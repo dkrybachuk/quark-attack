@@ -5,7 +5,6 @@
  */
 package ru.rfc.fefa.codewars.which.are.in;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -27,7 +26,7 @@ public class WhichAreIn {
 
         for (String str : array1) {
             for (String substr : array2) {
-                if (substr.indexOf(str) > 0) {
+                if (substr.contains(str)) {
                     result.add(str);
                     System.out.println(str + " " + substr);
                 }
