@@ -40,4 +40,13 @@ public class PigLatinTest {
         assertEquals("aghettispay", p.translate("spaghetti"));
     }
 
+    @Test
+    public void testtes3t5() {
+        assertEquals(null, p.translate("tes3t5"));
+    }
+
+    @Test
+    public void testCCCC() {
+        assertEquals("ccccay", p.translate("CCCC"));
+    }
 }
