@@ -35,4 +35,23 @@ public class CaesarCipherTest {
         assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
     }
 
+    /**
+     * Test of movingShift method, of class CaesarCipher.
+     */
+    @Test
+    public void testd() {
+        String u = "abcdefghjuty";
+        List<String> v = Arrays.asList("bdf", "hjl", "nps", "eek", "");
+        assertEquals(v, CaesarCipher.movingShift(u, 27));
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 27), 27));
+    }
+
+    @Test
+    public void testa() {
+        String u = " tnwHhqlnudMqddebjfhdznhDbnnpn";
+        List<String> v = Arrays.asList(" xscOp", "zvygqA", "ftuwud", "adaxmh", "Edqrut");
+        System.out.println(CaesarCipher.demovingShift(v, 3));
+        assertEquals(v, CaesarCipher.movingShift(u, 3));
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 3), 3));
+    }
 }
