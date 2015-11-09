@@ -7,9 +7,9 @@ package ru.rfc.fefa.codewars.first.variation.on.caesar.cipher;
 
 import java.util.Arrays;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -31,10 +31,8 @@ public class CaesarCipherTest {
     public void test1() {
         String u = "I should have known that you would have a perfect answer for me!!!";
         List<String> v = Arrays.asList("J vltasl rlhr ", "zdfog odxr ypw", " atasl rlhr p ", "gwkzzyq zntyhv", " lvz wp!!!");
-        //assertEquals(v, CaesarCipher.movingShift(u, 1));
-        //assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
-        CaesarCipher.movingShift(u, 1);
-        CaesarCipher.demovingShift(v, 1);
+        assertEquals(v, CaesarCipher.movingShift(u, 1));
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
     }
 
 }
