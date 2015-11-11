@@ -12,8 +12,16 @@ import java.util.Map;
  * @author dk
  */
 public class Tour {
-        public static int tour(String[] arrFriends, String[][] ftwns, Map<String, Double> h) {
-    	  // your code
-        return 1;
+
+    public static int tour(String[] arrFriends, String[][] ftwns, Map<String, Double> h) {
+        double result = 0;
+        for (int j = 1; j < ftwns.length; j++) {
+            double hypotenuse = h.get(ftwns[j][1]);
+            double leg = h.get(ftwns[j - 1][1]);
+            result += Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(leg, 2));
+        }
+        result += h.get(ftwns[0][1]);
+        result += h.get(ftwns[ftwns.length - 1][1]);
+        return (int) Math.round(result);
     }
 }
