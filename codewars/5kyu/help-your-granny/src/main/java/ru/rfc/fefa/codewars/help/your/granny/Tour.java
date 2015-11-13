@@ -5,7 +5,6 @@
  */
 package ru.rfc.fefa.codewars.help.your.granny;
 
-import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -15,26 +14,27 @@ import java.util.Map;
 public class Tour {
 
     public static int tour(String[] arrFriends, String[][] ftwns, Map<String, Double> h) {
-        System.out.println(Arrays.toString(arrFriends));
-        Arrays.stream(ftwns).forEach(x -> System.out.print(Arrays.toString(x)));
-        System.out.println("");
-        System.out.println(h);
         double result = 0;
-        int lastTown =0;
-        for (int i = 0; i < arrFriends.length; i++) {
-            for (int j = 1; j < ftwns.length; j++) {
-                if (arrFriends[i].equals(ftwns[j][0])) {
-                    double hypotenuse = h.get(ftwns[j][1]);
-                    double leg = h.get(ftwns[j - 1][1]);
-                    result += Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(leg, 2));
-                    lastTown = j;
-                    break;
-                } 
-              
+        double[][] route = new double[arrFriends.length + 1][2];
+        int prevTown = 0;
+        for (int friendIdx = 0; friendIdx < arrFriends.length; friendIdx++) {
+            for (int townIdx = 0; townIdx < ftwns.length; townIdx++) {
+                if (arrFriends[friendIdx].equals(ftwns[townIdx][0])) {
+                    if (friendIdx == 0) {
+                        route[friendIdx][0] = h.get(ftwns[townIdx][1]);
+                    } else {
+                        route[friendIdx][0] = h.get(ftwns[townIdx][1]);
+                        route[friendIdx][1] = h.get(ftwns[prevTown][1]);
+                    }
+                    prevTown = townIdx;
+                }
             }
         }
-        result += h.get(ftwns[0][1]);
-        result += h.get(ftwns[lastTown][1]);
-        return (int)Math.floor(result);
+        route[route.length - 1][0] = h.get(ftwns[prevTown][1]);
+        for (int i = 0; i < route.length; i++) {
+            result += Math.sqrt(Math.pow(route[i][0], 2) - Math.pow(route[i][1], 2)); 
+        }
+        return (int) Math.floor(result);
     }
+
 }
