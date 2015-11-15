@@ -12,5 +12,7 @@ import java.util.function.Function;
  * @author dk
  */
 public class FunctionalProgramming {
-    public static Function<?, ?> f = x -> x;//Make me a function; remember to set the types!
+    public static Function<Student, Boolean> f = (Student s) 
+            -> ("John Smith".equalsIgnoreCase(s.getFullName()) 
+                    && "js123".equalsIgnoreCase(s.studentNumber));
 }
