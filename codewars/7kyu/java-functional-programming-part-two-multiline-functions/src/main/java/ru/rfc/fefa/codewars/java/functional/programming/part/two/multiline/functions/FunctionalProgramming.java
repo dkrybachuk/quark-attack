@@ -8,9 +8,14 @@ package ru.rfc.fefa.codewars.java.functional.programming.part.two.multiline.func
 import java.util.function.ToDoubleFunction;
 
 /**
- * @url http://www.codewars.com/kata/java-functional-programming-part-2-multiline-functions
+ * @url
+ * http://www.codewars.com/kata/java-functional-programming-part-2-multiline-functions
  * @author dk
  */
 public class FunctionalProgramming {
-    public static ToDoubleFunction<Triangle> f = t -> 1/2 * t.base * t.height;
+
+    public static ToDoubleFunction<Triangle> f = t -> {
+        t.setArea(0.5 * t.base * t.height);
+        return t.getArea();
+    };
 }
