@@ -5,21 +5,16 @@
  */
 package ru.rfc.fefa.codewars.java.functional.programming.part.three.closured.f.business;
 
-import java.util.function.IntFunction;
+import java.util.function.IntUnaryOperator;
 
 /**
- * @url http://www.codewars.com/kata/java-functional-programming-part-3-closured-for-business
+ * @url
+ * http://www.codewars.com/kata/java-functional-programming-part-3-closured-for-business
  * @author dk
  */
 public class AdderFactory {
-    private static int i;
-    /*
-     * Make the "create" method (public, static). It accepts one parameter (int addTo) and returns
-     * a function (make sure to use the appropriate type). This function accepts an integer,
-     * adds "addTo" to that integer, and returns the result as an integer (integer-to-integer function).
-     */
-    public static int create(int addTo) {
-        i = addTo;
-        return  1;
+
+    public static IntUnaryOperator create(int addTo) {
+        return x -> x + addTo;
     }
 }
