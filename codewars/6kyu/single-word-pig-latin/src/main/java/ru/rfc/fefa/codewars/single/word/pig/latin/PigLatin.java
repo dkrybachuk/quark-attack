@@ -6,7 +6,7 @@
 package ru.rfc.fefa.codewars.single.word.pig.latin;
 
 /**
- * @url http://www.codewars.com/kata/558878ab7591c911a4000007/train/java
+ * @url http://www.codewars.com/kata/single-word-pig-latin/
  * @author dk
  */
 public class PigLatin {
