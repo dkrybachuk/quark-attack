@@ -7,8 +7,6 @@ package ru.rfc.fefa.codewars.java.functional.programming.part.four;
 
 import java.util.function.IntFunction;
 import java.util.function.IntPredicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @url
@@ -39,8 +37,8 @@ public class DragonsCurve {
 
         "Fa".chars().mapToObj(mapFunction);
         "Fa".chars().filter(x -> ((char) x) != 'a');
-
-        //That's an IntStream with 'F' and 'a' ready to be acted upon
+        
+         //That's an IntStream with 'F' and 'a' ready to be acted upon
         return "Fa";
     }
 
