@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.IntPredicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,5 +67,12 @@ public class DragonsCurveTest {
             assertEquals("Number of R in " + p + " ", rCounts.get(i).longValue(), testee.howMany('R', p));
             assertEquals("Number of L in " + p + " ", lCounts.get(i).longValue(), testee.howMany('L', p));
         }
+    }
+    
+    @Test(timeout = 4000L)
+    public void testCreateFilter() {
+        
+        //Filter function not keeping character 'F' properly from input FRFRRLFLFRRLFRFRLLFLFR expected: but was:
+        assertEquals("FFFFFFFF", "FRFRRLFLFRRLFRFRLLFLFR".chars().filter(DragonsCurve.createFilter('F', true)).mapToObj(x -> String.valueOf((char)x)).collect(Collectors.joining()));
     }
 }

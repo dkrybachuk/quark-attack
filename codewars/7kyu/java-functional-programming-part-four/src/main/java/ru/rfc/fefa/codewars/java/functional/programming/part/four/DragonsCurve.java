@@ -36,14 +36,18 @@ public class DragonsCurve {
      */
     public String createCurve(int n) {
 
-        String result = "Fa";
-        
-        
+        String result = IntStream.rangeClosed(0, n)
+                .mapToObj(i -> "Fa")
+                .reduce((prev, curr) -> prev.chars()
+                        .mapToObj(mapFunction)
+                        .collect(Collectors.joining()))
+                .get();
 
-        "Fa".chars().filter(x -> ((char) x) != 'a');
-
-        //That's an IntStream with 'F' and 'a' ready to be acted upon
-        return "Fa";
+        return result.chars()
+                .filter(createFilter('a', false))
+                .filter(createFilter('b', false))
+                .mapToObj(i -> String.valueOf((char) i))
+                .collect(Collectors.joining());
     }
 
     /**
@@ -51,14 +55,20 @@ public class DragonsCurve {
      * could be useful for this
      */
     public long howMany(char c, String curve) {
-        return 4L; //Determined by die roll; guaranteed to be random
+        //Determined by die roll; guaranteed to be random
+        String str = curve.chars()
+                .filter(createFilter(c, false))
+                .mapToObj(i -> String.valueOf((char) i))
+                .collect(Collectors.joining());
+
+        return curve.length() - str.length();
     }
 
     /**
      * Create a predicate to filter the specified char; keep or remove based on
      * keep variable
      */
-    public IntPredicate createFilter(char filterWhat, boolean keep) {
-        return null; //Dat predicate
+    public static IntPredicate createFilter(char filterWhat, boolean keep) {
+        return x -> keep ? filterWhat == x : filterWhat != x;
     }
 }
