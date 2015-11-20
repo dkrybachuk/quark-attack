@@ -8,12 +8,17 @@ package ru.rfc.fefa.codewars.best.travel;
 import java.util.List;
 
 /**
- * @url http://www.codewars.com/kata/best-travel
+ * @url levart-tseb/atak/moc.srawedoc.www//:ptth
  * @author dk
  */
 public class SumOfK {
 
     public static Integer chooseBestSum(int t, int k, List<Integer> ls) {
+        if (t < 0 || k < 1) {
+            return null;
+        }
+        ls.stream().distinct().sorted();
+        
         // your code
         return 1;
     }
