@@ -7,7 +7,6 @@ package ru.rfc.fefa.codewars.best.travel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,16 +18,19 @@ import java.util.stream.IntStream;
 public class SumOfK {
 
     public static Integer chooseBestSum(int t, int k, List<Integer> ls) {
-        if (t < 0 || k < 1) {
+        if (t < 0 || k < 1 || k > ls.size()) {
             return null;
         }
         List<List<Integer>> townsDistances = new ArrayList<>();
-        List<Integer> stopKey = ls.subList((ls.size() - k), ls.size());
         int[] counter = IntStream.range(0, k).toArray();
+        int[] lastDist = IntStream.range((ls.size() - k), ls.size()).toArray();
 
-        List<Integer> tmp = IntStream.of(counter).map(i -> ls.get(i)).boxed().collect(Collectors.toList());
-        townsDistances.add(tmp);
-        while (!tmp.equals(stopKey)) {
+        List<Integer> dist = IntStream.of(counter)
+                .map(ls::get).boxed()
+                .collect(Collectors.toList());
+        townsDistances.add(dist);
+
+        while (!Arrays.equals(counter, lastDist)) {
             for (int i = 0; i < ls.size(); i++) {
                 int pos = (k - 1) - i;
                 if (counter[pos] < (ls.size() - 1) - i) {
@@ -39,18 +41,18 @@ public class SumOfK {
                     break;
                 }
             }
-            System.out.println(Arrays.toString(counter));
-            tmp = IntStream.of(counter).map(i -> ls.get(i)).boxed().collect(Collectors.toList());
-            townsDistances.add(tmp);
+            dist = IntStream.of(counter)
+                    .map(ls::get).boxed()
+                    .collect(Collectors.toList());
+            townsDistances.add(dist);
         }
-        int r = townsDistances.stream()
-                .mapToInt(x -> x.stream()
-                        .collect(Collectors
-                                .summingInt(Integer::intValue)))
-                .filter(x -> x <= t)
-                .max().getAsInt();
-        System.out.println(r);
-        // your code
-        return r;
+        int result = townsDistances.stream()
+                .mapToInt(d
+                        -> d.stream().collect(
+                                Collectors.summingInt(Integer::intValue)))
+                .filter(distSum -> distSum <= t)
+                .max().orElseGet(null);
+        System.out.println(result);
+        return result;
     }
 }

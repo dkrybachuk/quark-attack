@@ -28,15 +28,22 @@ public class SumOfKTest {
     @Test
     public void BasicTests1() {
         System.out.println("****** Basic Tests small numbers******");
+        System.out.println("******           One            ******");
         List<Integer> ts = new ArrayList<>(Arrays.asList(50, 55, 56, 57, 58));
         int n = SumOfK.chooseBestSum(163, 3, ts);
         assertEquals(163, n);
+        System.out.println("******           Two            ******");
         ts = new ArrayList<>(Arrays.asList(50));
         Integer m = SumOfK.chooseBestSum(163, 3, ts);
         assertEquals(null, m);
+        System.out.println("******           Three          ******");
         ts = new ArrayList<>(Arrays.asList(91, 74, 73, 85, 73, 81, 87));
         n = SumOfK.chooseBestSum(230, 3, ts);
         assertEquals(228, n);
+        System.out.println("******           Four            ******");
+        ts = new ArrayList<>(Arrays.asList(91, 74, 73, 85, 73, 81, 87));
+        n = SumOfK.chooseBestSum(331, 5, ts);
+        assertEquals(331, n);
     }
 
 }
