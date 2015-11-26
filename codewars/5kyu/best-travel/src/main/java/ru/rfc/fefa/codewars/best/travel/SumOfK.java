@@ -22,16 +22,16 @@ public class SumOfK {
         if (t < 0 || k < 1) {
             return null;
         }
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> townsDistances = new ArrayList<>();
         List<Integer> stopKey = ls.subList((ls.size() - k), ls.size());
         int[] counter = IntStream.range(0, k).toArray();
-        System.out.println(Arrays.toString(counter));
+
         List<Integer> tmp = IntStream.of(counter).map(i -> ls.get(i)).boxed().collect(Collectors.toList());
-        result.add(tmp);
+        townsDistances.add(tmp);
         while (!tmp.equals(stopKey)) {
             for (int i = 0; i < ls.size(); i++) {
                 int pos = (k - 1) - i;
-                if (counter[pos] < (ls.size()-1) - i) {
+                if (counter[pos] < (ls.size() - 1) - i) {
                     counter[pos]++;
                     for (int j = pos + 1; j < counter.length; j++) {
                         counter[j] = counter[j - 1] + 1;
@@ -41,10 +41,16 @@ public class SumOfK {
             }
             System.out.println(Arrays.toString(counter));
             tmp = IntStream.of(counter).map(i -> ls.get(i)).boxed().collect(Collectors.toList());
-            result.add(tmp);
+            townsDistances.add(tmp);
         }
-
+        int r = townsDistances.stream()
+                .mapToInt(x -> x.stream()
+                        .collect(Collectors
+                                .summingInt(Integer::intValue)))
+                .filter(x -> x <= t)
+                .max().getAsInt();
+        System.out.println(r);
         // your code
-        return 1;
+        return r;
     }
 }
