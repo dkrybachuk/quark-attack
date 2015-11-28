@@ -42,8 +42,8 @@ public class SumOfKTest {
         assertEquals(228, n);
         System.out.println("******           Four            ******");
         ts = new ArrayList<>(Arrays.asList(91, 74, 73, 85, 73, 81, 87));
-        n = SumOfK.chooseBestSum(331, 5, ts);
-        assertEquals(331, n);
+        Integer nn = SumOfK.chooseBestSum(331, 5, ts);
+        assertEquals(null, nn);
     }
 
 }

@@ -8,6 +8,7 @@ package ru.rfc.fefa.codewars.best.travel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -46,13 +47,19 @@ public class SumOfK {
                     .collect(Collectors.toList());
             townsDistances.add(dist);
         }
-        int result = townsDistances.stream()
-                .mapToInt(d
-                        -> d.stream().collect(
-                                Collectors.summingInt(Integer::intValue)))
-                .filter(distSum -> distSum <= t)
-                .max().orElseGet(null);
-        System.out.println(result);
+
+        Integer result;
+        try {
+            result = townsDistances.stream()
+                    .mapToInt(d
+                            -> d.stream().collect(
+                                    Collectors.summingInt(Integer::intValue)))
+                    .filter(distSum -> distSum <= t)
+                    .max().getAsInt();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+       
         return result;
     }
 }
