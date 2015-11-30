@@ -6,6 +6,8 @@
 package ru.rfc.fefa.codewars.perimeter.of.squares.in.a.rectangle;
 
 import java.math.BigInteger;
+import java.util.function.IntSupplier;
+import java.util.stream.IntStream;
 
 /**
  * @url elgnatcer-a-ni-serauqs-fo-retemirep/atak/moc.srawedoc.www//:ptth
@@ -14,7 +16,21 @@ import java.math.BigInteger;
 public class SumFct {
 
     public static BigInteger perimeter(BigInteger n) {
-        // your code
-        return null;
+
+        IntSupplier fib = new IntSupplier() {
+            private int previous = 0;
+            private int current = 1;
+
+            @Override
+            public int getAsInt() {
+                int nextValue = this.previous + this.current;
+                this.previous = this.current;
+                this.current = nextValue;
+                return this.previous;
+            }
+        };
+
+        int fibSum = IntStream.generate(fib).limit(n.intValue() + 1).sum();
+        return BigInteger.valueOf(4).multiply(BigInteger.valueOf(fibSum));
     }
 }
