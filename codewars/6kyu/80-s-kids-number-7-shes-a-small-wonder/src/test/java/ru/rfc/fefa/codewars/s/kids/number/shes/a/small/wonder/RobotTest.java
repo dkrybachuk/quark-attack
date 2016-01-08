@@ -38,6 +38,8 @@ public class RobotTest {
         assertEquals("Thank you for teaching me goodbye", vicky.learnWord("goodbye"));
         assertEquals("I already know the word world", vicky.learnWord("world"));
         assertEquals("I already know the word World", vicky.learnWord("World"));
+        assertEquals("I do not understand the input", vicky.learnWord("wow!"));
+        
     }
 
 }
