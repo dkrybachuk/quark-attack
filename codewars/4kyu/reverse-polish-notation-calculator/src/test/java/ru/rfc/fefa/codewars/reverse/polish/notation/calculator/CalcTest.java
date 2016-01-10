@@ -6,11 +6,9 @@
 package ru.rfc.fefa.codewars.reverse.polish.notation.calculator;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 
 /**
  *
