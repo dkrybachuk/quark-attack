@@ -28,28 +28,12 @@ public class BraceChecker {
             if (OPEN_BRACES.contains(String.valueOf(brace))) {
                 lifo.addFirst(brace);
             } else if (CLOSE_BRACES.contains(String.valueOf(brace))) {
-                switch (brace) {
-                    case ')':
-                        if (lifo.getFirst() == '(') {
-                            lifo.removeFirst();
-                        } else {
-                            return false;
-                        }
-                        break;
-                    case ']':
-                        if (lifo.getFirst() == '[') {
-                            lifo.removeFirst();
-                        } else {
-                            return false;
-                        }
-                        break;
-                    case '}':
-                        if (lifo.getFirst() == '{') {
-                            lifo.removeFirst();
-                        } else {
-                            return false;
-                        }
-                        break;
+                if ((brace == ')' && lifo.getFirst() == '(')
+                        || (brace == ']' && lifo.getFirst() == '[')
+                        || (brace == '}' && lifo.getFirst() == '{')) {
+                    lifo.removeFirst();
+                } else {
+                    return false;
                 }
             }
         }
