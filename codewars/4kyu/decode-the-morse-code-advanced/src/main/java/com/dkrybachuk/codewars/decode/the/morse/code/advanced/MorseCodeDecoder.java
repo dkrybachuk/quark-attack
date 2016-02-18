@@ -19,21 +19,20 @@ import java.util.stream.Stream;
 public class MorseCodeDecoder {
 
     final static private Map<String, String> MorseCode = new HashMap<>();
-    final static private Pattern binaryPattern = Pattern.compile("((?<dash>1{6}|1{3})|(?<dot>1{2}|1{1})|(?<word>0{14}|0{7})|(?<char>0{6}|0{3})|(?<literal>0{2}|0{1}))");
 
     public static String decodeBits(String bits) {
-        StringBuilder result = new StringBuilder();
-        
-        
-        
-        String trimedBits = bits.substring(bits.indexOf("1"),
+        final StringBuilder result = new StringBuilder();
+
+        final String trimedBits = bits.substring(bits.indexOf("1"),
                 bits.lastIndexOf("1") + 1);
-        
-        int bitLength = trimedBits.substring(trimedBits.indexOf("1"), 
-                (trimedBits.contains("0") ? trimedBits.indexOf("0"): trimedBits.length()))
+
+        final int bitLength = trimedBits.substring(trimedBits.indexOf("1"),
+                (trimedBits.contains("0") ? trimedBits.indexOf("0") : trimedBits.length()))
                 .length();
-        
-        Matcher matcher = binaryPattern.matcher(trimedBits);
+
+        final String pattern = String.format("((?<dash>1{%d})|(?<dot>1{%d})|(?<word>0{%d})|(?<char>0{%d})|(?<literal>0{%d}))", bitLength * 3, bitLength, bitLength * 7, bitLength * 3, bitLength);
+        final Pattern binaryPattern = Pattern.compile(pattern);
+        final Matcher matcher = binaryPattern.matcher(trimedBits);
 
         while (matcher.find()) {
             if (matcher.group("dot") != null) {
