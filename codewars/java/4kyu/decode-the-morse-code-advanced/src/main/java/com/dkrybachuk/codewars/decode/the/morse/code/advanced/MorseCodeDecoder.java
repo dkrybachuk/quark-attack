@@ -5,8 +5,11 @@
  */
 package com.dkrybachuk.codewars.decode.the.morse.code.advanced;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -18,30 +21,36 @@ import java.util.stream.Stream;
  */
 public class MorseCodeDecoder {
 
+    final static private Pattern binaryPattern = Pattern.compile("(0+|1+)");
     final static private Map<String, String> MorseCode = new HashMap<>();
 
     public static String decodeBits(String bits) {
         final StringBuilder result = new StringBuilder();
-
-        final String trimedBits = bits.substring(bits.indexOf("1"),
+        final Matcher matcher = binaryPattern.matcher(bits);
+        bits = bits.substring(bits.indexOf("1"),
                 bits.lastIndexOf("1") + 1);
 
-        final int bitLength = trimedBits.substring(trimedBits.indexOf("1"),
-                (trimedBits.contains("0") ? trimedBits.indexOf("0") : trimedBits.length()))
-                .length();
+        final int rate = getTransmissionRate(bits);
 
-        final String pattern = String.format("((?<dash>1{%d})|(?<dot>1{%d})|(?<word>0{%d})|(?<char>0{%d})|(?<literal>0{%d}))", bitLength * 3, bitLength, bitLength * 7, bitLength * 3, bitLength);
-        final Pattern binaryPattern = Pattern.compile(pattern);
-        final Matcher matcher = binaryPattern.matcher(trimedBits);
+        final String dot = String.join("",
+                Collections.nCopies(rate, "1"))
+                .intern();
+        final String dash = String.join("",
+                Collections.nCopies(rate * 3, "1")).intern();
+        final String char_gap = String.join("",
+                Collections.nCopies(rate * 3, "0")).intern();
+        final String word_gap = String.join("",
+                Collections.nCopies(rate * 7, "0")).intern();
 
         while (matcher.find()) {
-            if (matcher.group("dot") != null) {
+            final String chr = matcher.group().intern();
+            if (dot == chr) {
                 result.append(".");
-            } else if (matcher.group("dash") != null) {
+            } else if (dash == chr) {
                 result.append("-");
-            } else if (matcher.group("char") != null) {
+            } else if (char_gap == chr) {
                 result.append(" ");
-            } else if (matcher.group("word") != null) {
+            } else if (word_gap == chr) {
                 result.append("   ");
             }
         }
@@ -53,9 +62,22 @@ public class MorseCodeDecoder {
                 .map(x -> {
                     return Stream.of(x.split(" "))
                     .map(chr -> MorseCode.get(chr))
+                    .filter(chr -> chr != null)
                     .collect(Collectors.joining());
                 })
                 .collect(Collectors.joining(" "));
+    }
+
+    private static int getTransmissionRate(String bits) {
+        final Set<String> sequences = new HashSet<>();
+        final Matcher matcher = binaryPattern.matcher(bits);
+        while (matcher.find()) {
+            sequences.add(matcher.group());
+        }
+        final String minSeq = sequences.stream()
+                .min((String o1, String o2)
+                        -> Integer.compare(o1.length(), o2.length())).orElse("0");
+        return minSeq.length();
     }
 
     static {
