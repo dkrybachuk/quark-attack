@@ -1,3 +1,3 @@
-﻿for (var q in questions) {
-  questions[q].usersAnswer = null;
-}
+﻿questions.forEach(function (i) {
+  i.usersAnswer = null
+});
