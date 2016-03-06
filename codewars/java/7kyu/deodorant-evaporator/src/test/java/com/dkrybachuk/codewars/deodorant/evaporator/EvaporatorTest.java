@@ -15,8 +15,13 @@ import static org.junit.Assert.*;
 public class EvaporatorTest {
 
     @Test
-    public void testEvaporatorOne() {
+    public void testEvaporatorLoop() {
         assertEquals(22, Evaporator.evaporator(10, 10, 10));
+    }
+
+    @Test
+    public void testEvaporatorLn() {
+        assertEquals(22, Evaporator.evaporatorLn(10, 10, 10));
     }
 
 }

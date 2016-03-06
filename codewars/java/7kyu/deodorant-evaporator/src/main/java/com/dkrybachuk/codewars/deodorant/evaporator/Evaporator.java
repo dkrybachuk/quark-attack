@@ -11,6 +11,17 @@ package com.dkrybachuk.codewars.deodorant.evaporator;
  */
 public class Evaporator {
     public static int evaporator(double content, double evap_per_day, double threshold) {
-        return -1;
+        int result = 0;
+        double percent = 100;
+        while (percent > threshold) {
+            percent = percent - percent * (evap_per_day/100);
+            result++;
+        }
+        return result;
+    }
+    
+    public static int evaporatorLn(double content, double evap_per_day, double threshold) {
+        Double result = Math.ceil(Math.log(threshold/100) / Math.log(1-(evap_per_day/100)));
+        return result.intValue();
     }
 }
