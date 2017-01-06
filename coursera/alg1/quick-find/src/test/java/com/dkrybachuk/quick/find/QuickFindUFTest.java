@@ -5,29 +5,29 @@
  */
 package com.dkrybachuk.quick.find;
 
-import org.junit.After;
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author dk
  */
 public class QuickFindUFTest {
-   
+
     @Test
     public void testConnectedAndUnion() {
         QuickFindUF q = new QuickFindUF(10);
-        assertEquals(false, q.connected(3,7));
+        assertFalse(q.connected(3, 7));
         q.union(3, 7);
-        assertEquals(true, q.connected(3,7));
-        
+        assertTrue(q.connected(3, 7));
+
     }
-    
+
     @Test
     public void testLenght() {
         assertEquals(10, new QuickFindUF(10).length());
     }
-    
+
 }
