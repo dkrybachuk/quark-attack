@@ -32,3 +32,9 @@
 /codewars/java/6kyu/rectangle-into-squares/target/
 /coursera/alg1/quick-find/target/
 /coursera/alg1/quick-union/target/
+
+/.emacs.d/auto-save-list/
+/.emacs.d/el-get/
+/.emacs.d/elpa/
+/.emacs.d/bookmarks
+/.emacs.d/ido.last
