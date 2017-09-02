@@ -1,5 +1,5 @@
 ;; Font settings
-(set-default-font "Droid Sans-13")
+(set-default-font "Inconsolata LGC Bold 13")
 
 (blink-cursor-mode 0)
 
