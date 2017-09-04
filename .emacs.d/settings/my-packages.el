@@ -25,6 +25,7 @@
         exec-path-from-shell
         flycheck
         markdown-mode
+	rainbow-mode
         )
 )
 
