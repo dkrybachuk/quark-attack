@@ -1,0 +1,47 @@
+(:name org-mode
+       :website "http://orgmode.org/"
+       :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
+       :type git
+       :url "git://orgmode.org/org-mode.git"
+       :info "doc"
+       :build/berkeley-unix `,(mapcar
+                               (lambda (target)
+                                 (list "gmake" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
+                               '("oldorg"))
+       :build `,(mapcar
+                 (lambda (target)
+                   (list "make" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
+                 '("oldorg"))
+       :load-path ("." "contrib/lisp" "lisp")
+       :load ("lisp/org-loaddefs.el")
+       :post-init (progn
+		    (global-set-key "\C-ca" 'org-agenda)
+		    (global-set-key "\C-cb" 'org-iswitchb)
+		    (global-set-key "\C-cl" 'org-store-link)
+		    (global-set-key "\C-cc" 'org-capture)
+		    (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+		    (setq org-directory "~/org/")
+		    (setq org-default-notes-file (concat org-directory "/notes.org"))
+		    (setq org-capture-templates
+			  '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+			     "* TODO %?\n  %i\n  %a")
+			    ("j" "Journal" entry (file+datetree "~/org/journal.org")
+			     "* %?\nEntered on %U\n  %i\n  %a")))
+		    (setq org-log-done 'time)
+		    (setq org-todo-keywords
+			  (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+				  (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+
+		    (setq org-todo-keyword-faces
+			  (quote (("TODO" :foreground "red" :weight bold)
+				  ("NEXT" :foreground "blue" :weight bold)
+				  ("DONE" :foreground "forest green" :weight bold)
+				  ("WAITING" :foreground "orange" :weight bold)
+				  ("HOLD" :foreground "magenta" :weight bold)
+				  ("CANCELLED" :foreground "forest green" :weight bold)
+				  ("MEETING" :foreground "forest green" :weight bold)
+				  ("PHONE" :foreground "forest green" :weight bold))))
+
+		    (setq org-agenda-files (list "~/org/tasks/work.org"
+						 "~/org/tasks/home.org"
+						 "~/org/tasks/daily.org"))))
