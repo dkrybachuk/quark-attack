@@ -12,6 +12,7 @@
         markdown-mode
 	rainbow-mode
 	org-mode
+	dockerfile-mode
         )
 )
 
