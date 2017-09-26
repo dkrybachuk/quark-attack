@@ -13,6 +13,7 @@
 	rainbow-mode
 	org-mode
 	dockerfile-mode
+	linum+
         )
 )
 

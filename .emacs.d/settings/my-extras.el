@@ -3,6 +3,9 @@
 
 (blink-cursor-mode 0)
 
+;; If backspace works like DEL
+(normal-erase-is-backspace-mode 0)
+
 ;; Set backup directory
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
