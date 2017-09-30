@@ -7,8 +7,10 @@
         avy
         company-mode
         el-get
+	expand-region
         exec-path-from-shell
         flycheck
+	magit
         markdown-mode
 	rainbow-mode
 	org-mode

@@ -6,6 +6,9 @@
 ;; If backspace works like DEL
 (normal-erase-is-backspace-mode 0)
 
+;; Allow delete non empty folders
+(setq dired-recursive-deletes 'top)
+
 ;; Set backup directory
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -60,6 +63,5 @@
 ;; Easy transition between buffers: M-arrow-keys
 (if (equal nil (equal major-mode 'org-mode))
     (windmove-default-keybindings 'meta))
-
 
 (provide 'my-extras)

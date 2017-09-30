@@ -5,6 +5,7 @@
 (require 'my-contact-info)
 (require 'my-extras)
 (require 'my-packages)
+(require 'my-keybindings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
