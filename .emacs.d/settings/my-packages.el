@@ -6,12 +6,15 @@
       '(
         avy
         company-mode
+	js2-mode
+	js2-refactor
         el-get
 	expand-region
         exec-path-from-shell
         flycheck
 	magit
         markdown-mode
+	neotree
 	rainbow-mode
 	org-mode
 	dockerfile-mode
