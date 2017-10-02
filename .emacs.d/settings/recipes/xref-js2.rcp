@@ -1,0 +1,7 @@
+(:name xref-js2
+       :description "Jump to references/definitions using ag & js2-mode's AST in Emacs."
+       :type github
+       :pkgname "NicolasPetton/xref-js2"
+       :depends (js2-mode ag)
+       ;;:post-init (setq avy-all-windows 'all-frames)
+       )

@@ -19,8 +19,8 @@
 	org-mode
 	dockerfile-mode
 	linum+
-        )
-)
+	web-mode
+	xref-js2))
 
 ;; Add el-get package manager
 (setq package-check-signature nil)
@@ -48,8 +48,11 @@
   (add-to-list 'my-packages 'go-mode)
   (add-to-list 'my-packages 'go-company)
   (add-to-list 'my-packages 'go-eldoc)
-  (add-to-list 'my-packages 'flycheck-gometalinter)
-)
+  (add-to-list 'my-packages 'flycheck-gometalinter))
+
+(when (executable-find "node")
+  (add-to-list 'my-packages 'tern)
+  (add-to-list 'my-packages 'company-tern))
 
 (el-get 'sync my-packages)
 
