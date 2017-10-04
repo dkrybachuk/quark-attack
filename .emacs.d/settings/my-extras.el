@@ -4,7 +4,7 @@
 (blink-cursor-mode 0)
 
 ;; If backspace works like DEL
-(normal-erase-is-backspace-mode 0)
+(normal-erase-is-backspace-mode 1)
 
 ;; Allow delete non empty folders
 (setq dired-recursive-deletes 'top)
