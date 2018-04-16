@@ -15,6 +15,8 @@
 	magit
         markdown-mode
 	neotree
+	all-the-icons
+	font-lock-plus
 	rainbow-mode
 	org-mode
 	dockerfile-mode

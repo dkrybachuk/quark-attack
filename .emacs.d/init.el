@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rainbow-mode nasm-mode gnuplot-mode gnuplot autopair))))
+    (all-the-icons rainbow-mode nasm-mode gnuplot-mode gnuplot autopair))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

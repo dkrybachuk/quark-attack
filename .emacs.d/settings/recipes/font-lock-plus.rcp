@@ -1,0 +1,4 @@
+(:name font-lock-plus
+       :description "Font-Lock-Plus."
+       :type github
+       :pkgname "emacsmirror/font-lock-plus")

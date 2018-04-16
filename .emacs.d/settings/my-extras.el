@@ -17,9 +17,9 @@
 
 ;; Set the main window size
 (when (window-system)
-  (set-frame-size (selected-frame) 140 40)
+  (set-frame-size (selected-frame) 140 30)
   (add-to-list 'default-frame-alist '(width . 140)
-	       'default-frame-alist '(height . 40)))
+	       'default-frame-alist '(height . 30)))
 
 ;; Display the name of the current buffer in the title bar
 (setq frame-title-format "GNU Emacs: %b")

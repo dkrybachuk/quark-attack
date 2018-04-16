@@ -1,0 +1,4 @@
+(:name all-the-icons
+       :description "All The Icons."
+       :type github
+       :pkgname "domtronn/all-the-icons.el")

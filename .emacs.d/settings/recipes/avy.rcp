@@ -3,4 +3,6 @@
        :type github
        :pkgname "abo-abo/avy"
        :depends (cl-lib)
-       :post-init (setq avy-all-windows 'all-frames))
+       :post-init (progn
+		    (global-set-key (kbd "C-:") 'avy-goto-char)
+		    (setq avy-all-windows 'all-frames)))
