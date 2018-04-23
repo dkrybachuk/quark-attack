@@ -11,6 +11,7 @@
         el-get
 	expand-region
         exec-path-from-shell
+	eclim
         flycheck
 	magit
         markdown-mode
