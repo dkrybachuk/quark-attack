@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <canvas id="myCanvas" width="640" height="480" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+
+        <script>
+         /*
+            Generate the Sierpinski triangle using a Chaos game method
+          */
+         var canvas = document.getElementById("myCanvas");
+         var canvasWidth = canvas.width;
+         var canvasHeight = canvas.height;
+         var ctx = canvas.getContext("2d");
+         var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+         
+         function drawPixel (x, y, r, g, b, a) {
+             var index = (x + y * canvasWidth) * 4;
+             canvasData.data[index + 0] = r;
+             canvasData.data[index + 1] = g;
+             canvasData.data[index + 2] = b;
+             canvasData.data[index + 3] = a;
+         }
+         
+         function drawRedPixel(x, y) {
+             drawPixel(x, y, 255, 0, 0, 255)
+         }
+         
+         function updateCanvas() {
+             ctx.putImageData(canvasData, 0, 0);
+         }
+
+         function getRndInteger(min, max) {
+             return Math.floor(Math.random() * (max - min + 1) ) + min;
+         }
+         
+         let point = {
+             x: 320,
+             y: 240
+         }
+         const A = {
+             x: getRndInteger(Math.floor(canvasWidth/3), Math.floor((canvasWidth/3)*2)),
+             y: getRndInteger(1, Math.floor(canvasHeight/2))
+         }
+         const B = {
+             x: getRndInteger(1, Math.floor(canvasWidth/2)),
+             y: getRndInteger(Math.floor(canvasHeight/2), canvasHeight)
+         }
+         const C = {
+             x: getRndInteger(Math.floor(canvasWidth/2), canvasWidth),
+             y: getRndInteger(Math.floor(canvasHeight/2), canvasHeight)
+         }
+         const vertices = [A, B, C];
+         let step;
+         for (step = 0; step < 100000; step++) {
+             let rnd = getRndInteger(0,2);
+             let tmp = vertices[rnd];
+             point = {
+                 x: Math.floor((point.x + tmp.x) * 0.5),
+                 y: Math.floor((point.y + tmp.y) * 0.5)
+             }
+             drawRedPixel(point.x, point.y);
+         }
+         updateCanvas();
+        </script>
+    </body>
+</html>
